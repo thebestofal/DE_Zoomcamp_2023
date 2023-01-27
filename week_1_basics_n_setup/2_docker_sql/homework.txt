@@ -1,0 +1,34 @@
+1) docker build --help | grep "Write the image ID to the file"
+
+2)
+```
+FROM python:3.9.1
+ENTRYPOINT [ "bash" ]
+```
+
+docker build .
+docker run -t test .
+pip list
+
+3)
+SELECT COUNT(*) FROM green_taxi_data
+WHERE lpep_pickup_datetime::date = '2019-01-15' AND lpep_dropoff_datetime::date = '2019-01-15'
+
+4)
+SELECT * FROM green_taxi_data WHERE trip_distance = (
+SELECT MAX(trip_distance) FROM green_taxi_data)
+
+5)
+SELECT COUNT(*) FROM green_taxi_data 
+WHERE green_taxi_data.passenger_count = 2 AND lpep_pickup_datetime::date = '2019-01-01'
+
+SELECT COUNT(*) FROM green_taxi_data 
+WHERE green_taxi_data.passenger_count = 3 AND lpep_pickup_datetime::date = '2019-01-01'
+
+6)
+SELECT zdo."Zone", tip_amount FROM green_taxi_data gtd
+JOIN zones zdo ON zdo."LocationID" = gtd."DOLocationID"
+JOIN zones zpu ON zpu."LocationID" = gtd."PULocationID"
+WHERE zpu."Zone" = 'Astoria'
+ORDER BY tip_amount DESC
+LIMIT 1
